@@ -11,7 +11,7 @@ type LanguageOption = {
 };
 
 // API endpoints
-const DIRECT_API_URL = " https://018e-103-133-216-195.ngrok-free.app/translate";
+const DIRECT_API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CASCADE_API_URL = "http://10.2.23.142:5000/api/translate";
 
 export const useAudioTranslation = () => {
