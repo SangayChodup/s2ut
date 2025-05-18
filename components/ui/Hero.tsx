@@ -309,6 +309,7 @@ import { useAudioRecording } from "@/hooks/useAudioRecording";
 import { useAudioTranslation } from "@/hooks/useAudioTranslation";
 import { formatTime } from "@/utils/formatTime";
 import { url } from "node:inspector";
+import { SelectChangeEvent } from '@mui/material';
 
 const HeroWithTranslation: React.FC = () => {
   const scrollPosition = useScrollPosition();
@@ -370,17 +371,24 @@ const HeroWithTranslation: React.FC = () => {
     setErrorMessage(null);
   };
 
-  const handleSourceLanguageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSourceLanguage(event.target.value);
-  };
+  // const handleSourceLanguageChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setSourceLanguage(event.target.value);
+  // };
 
-  const handleTargetLanguageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setTargetLanguage(event.target.value);
-  };
+  // const handleTargetLanguageChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setTargetLanguage(event.target.value);
+  // };
+  const handleSourceLanguageChange = (event: SelectChangeEvent<string>) => {
+  setSourceLanguage(event.target.value);
+};
+
+const handleTargetLanguageChange = (event: SelectChangeEvent<string>) => {
+  setTargetLanguage(event.target.value);
+};
 
   return (
     <div id="hero" className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-center">
