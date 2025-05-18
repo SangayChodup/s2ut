@@ -11,13 +11,13 @@ type LanguageOption = {
 };
 
 // API endpoints
-const DIRECT_API_URL = "http://10.2.5.134:5000/translate";
-const CASCADE_API_URL = "http://10.2.4.249:5000/api/translate";
+const DIRECT_API_URL = " https://018e-103-133-216-195.ngrok-free.app/translate";
+const CASCADE_API_URL = "http://10.2.23.142:5000/api/translate";
 
 export const useAudioTranslation = () => {
   const [model, setModel] = useState<string>('Direct');
   const [sourceLanguage, setSourceLanguage] = useState<string>('English');
-  const [targetLanguage, setTargetLanguage] = useState<string>('Dzongkha');
+  const [targetLanguage, setTargetLanguage] = useState<string>('Tshangla');
   const [targetAudio, setTargetAudio] = useState<string | null>(null);
   const [isTranslating, setIsTranslating] = useState<boolean>(false);
   const [transcriptionText, setTranscriptionText] = useState<string | null>(null);
@@ -31,7 +31,7 @@ export const useAudioTranslation = () => {
 
   const languageOptions: LanguageOption[] = [
     { value: 'English', label: 'English' },
-    { value: 'Dzongkha', label: 'Dzongkha' }
+    { value: 'Tshangla', label: 'Tshangla' }
   ];
   
   const swapLanguages = () => {
@@ -41,16 +41,16 @@ export const useAudioTranslation = () => {
 
   // Determine language parameters based on selected model and languages
   const getLanguageParams = () => {
-    const isEnToDz = sourceLanguage === "English" && targetLanguage === "Dzongkha";
+    const isEnToDz = sourceLanguage === "English" && targetLanguage === "Tshangla";
 
     if (model === "Direct") {
       return {
-        language: isEnToDz ? "en_dz" : "dz_en",
+        language: isEnToDz ? "en_ts" : "ts_en",
       };
     } else {
       return {
-        source_lang: isEnToDz ? "en" : "dz",
-        target_lang: isEnToDz ? "dz" : "en",
+        source_lang: isEnToDz ? "en" : "ts",
+        target_lang: isEnToDz ? "ts" : "en",
         audio_type: ".wav",
         speaker: "female",
       };
@@ -115,7 +115,7 @@ export const useAudioTranslation = () => {
           setTranslationText(jsonResponse.translation);
 
           // Get the audio from the URL
-          const audioUrl = `http://10.2.4.249:5000${jsonResponse.audio_url}`;
+          const audioUrl = `${jsonResponse.audio_url}`;
 
           // Fetch the audio file
           const audioResponse = await fetch(audioUrl);
