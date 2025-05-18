@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Bidirectional Translation System',
-  description: 'Translate between English and Dzongkha with ease',
+  description: 'Tshangla and English Speech Translation',
 };
 
 export default function RootLayout({
