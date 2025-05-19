@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Mic, Upload, Square } from 'lucide-react';
 
 interface RecordingControlsProps {
@@ -13,22 +13,9 @@ const RecordingControls: React.FC<RecordingControlsProps> = ({
   onFileUpload
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [isHolding, setIsHolding] = useState(false);
   
-  const handleRecordStart = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    if (!isRecording) {
-      setIsHolding(true);
-      toggleRecording(); // Start recording
-    }
-  };
-  
-  const handleRecordEnd = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    if (isRecording && isHolding) {
-      setIsHolding(false);
-      toggleRecording(); // Stop recording which will automatically process the audio
-    }
+  const handleRecordClick = () => {
+    toggleRecording(); // Toggle recording state (start/stop)
   };
   
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,17 +29,14 @@ const RecordingControls: React.FC<RecordingControlsProps> = ({
   return (
     <div className="flex items-center justify-between mb-4">
       <button
-        // onMouseDown={handleRecordStart}
-        // onMouseUp={handleRecordEnd}
-        // onMouseLeave={isRecording && isHolding ? handleRecordEnd : undefined}
-        onTouchStart={handleRecordStart}
-        onTouchEnd={handleRecordEnd}
+        onClick={handleRecordClick}
         className={`flex items-center justify-center p-3 rounded-full transition duration-200 ${
           isRecording 
             ? 'bg-red-100 text-red-500' 
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
         }`}
-        aria-label={isRecording ? "Stop recording" : "Press and hold to record"}
+        aria-label={isRecording ? "Stop recording" : "Start recording"}
+        type="button"
       >
         {isRecording ? (
           <Square size={20} className="animate-pulse" />

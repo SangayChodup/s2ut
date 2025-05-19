@@ -73,8 +73,8 @@ const Header = () => {
         {mobileMenuOpen && (
           <div className="md:hidden mt-2 py-4 bg-black/80 backdrop-blur-sm rounded-lg border border-white/10 shadow-xl">
             <div className="flex flex-col space-y-4 px-4">
-              <NavLink href="/" onClick={handleNavLinkClick}>Home</NavLink>
-              <NavLink href="/about" onClick={handleNavLinkClick}>About</NavLink>
+              <NavLink href="#hero" onClick={handleNavLinkClick}>Home</NavLink>
+              <NavLink href="#about" onClick={handleNavLinkClick}>About</NavLink>
             </div>
           </div>
         )}
